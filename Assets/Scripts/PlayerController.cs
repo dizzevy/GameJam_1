@@ -15,19 +15,23 @@ public class PlayerController : MonoBehaviour
     private Vector2 direction;
     public float iq = 1f;
 
+    private string currentAniamtion;
+
     private Rigidbody2D rb;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        MovementAnim();
     }
 
     void Update() {
+        MovementAnim();
 
 
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        // передвижение персонажа по горизонтали
+        // передвижение персонажа по горизонтали и вертикали
         rb.velocity = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
 
         // куда персонаж идёт туди и смотрит
@@ -69,5 +73,96 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
             isGrounded = true;
         }
+    }
+
+    void ChangeAnimation(string animation)
+    {
+        if(currentAniamtion == animation) return;
+
+        animator.Play(animation);
+        currentAniamtion = animation;
+    }
+    
+    
+
+
+    void MovementAnim()
+    {
+        if(iq <35){
+
+            if(Input.GetKey(KeyCode.S))
+            {
+                ChangeAnimation("PlayerRunDown");
+            }
+            if(Input.GetKeyUp(KeyCode.S))
+            {
+                ChangeAnimation("PlayerIdle");
+            }
+        
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                ChangeAnimation("PlayerRunRight");
+            }
+            if(Input.GetKeyUp(KeyCode.D))
+            {
+                ChangeAnimation("PlayerIdle");
+            }
+
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                ChangeAnimation("PlayerRunRight");
+            }
+            if(Input.GetKeyUp(KeyCode.A))
+            {
+                ChangeAnimation("PlayerIdle");
+            }
+
+            if(Input.GetKey(KeyCode.W))
+            {
+                ChangeAnimation("PlayerRunUp");
+            }
+            if(Input.GetKeyUp(KeyCode.W))
+            {
+                ChangeAnimation("PlayerIdle");
+            }
+        }
+        if(iq >=35){
+            if(Input.GetKey(KeyCode.S))
+            {
+                ChangeAnimation("PlayerRunDown2");
+            }
+            if(Input.GetKeyUp(KeyCode.S))
+            {
+                ChangeAnimation("PlayerIdle2");
+            }
+        
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                ChangeAnimation("PlayerRunRight2");
+            }
+            if(Input.GetKeyUp(KeyCode.D))
+            {
+                ChangeAnimation("PlayerIdle2");
+            }
+
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                ChangeAnimation("PlayerRunRight2");
+            }
+            if(Input.GetKeyUp(KeyCode.A))
+            {
+                ChangeAnimation("PlayerIdle2");
+            }
+
+            if(Input.GetKey(KeyCode.W))
+            {
+                ChangeAnimation("PlayerRunUp2");
+            }
+            if(Input.GetKeyUp(KeyCode.W))
+            {
+                ChangeAnimation("PlayerIdle2");
+            }
+        }
+        
     }
 }

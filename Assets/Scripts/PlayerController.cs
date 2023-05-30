@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     private bool isJumping;
     private bool isGrounded;
+    private Vector2 direction;
 
     private Rigidbody2D rb;
 
@@ -18,21 +19,22 @@ public class PlayerController : MonoBehaviour
 
     void Update() {
 
-        float moveX = Input.GetAxis("Horizontal");
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
         // передвижение персонажа по горизонтали
-        rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
 
         // куда персонаж идёт туди и смотрит
 
         if(moveX > 0)
         {
-            transform.localScale = new Vector3(3f,3f,3f);
+            transform.localScale = new Vector3(1f,1f,1f);
 
         }
         else if(moveX < 0)
         {
-            transform.localScale = new Vector3(-3f,3f,3f);
+            transform.localScale = new Vector3(-1f,1f,1f);
         }
 
         //прыжок
@@ -43,7 +45,13 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
 
-        animator.SetFloat("HorizontalMove",Mathf.Abs(moveX));
+
+        direction.x = Input.GetAxisRaw("Horizontal");
+        direction.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     void OnCollisionEnter2D(Collision2D other) 

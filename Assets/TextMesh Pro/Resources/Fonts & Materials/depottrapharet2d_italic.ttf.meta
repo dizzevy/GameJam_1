@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 071e1d59221dd2f4c84b5bc291567c27
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Depot Trapharet 2D
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 35c02c74895df5f429c9afa5b7cf9efe, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
+    public TMP_Text iqText;
     public Animator animator;
     private bool isJumping;
     private bool isGrounded;
     private Vector2 direction;
+    public float iq = 1f;
 
     private Rigidbody2D rb;
 
@@ -18,6 +22,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
+
 
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
@@ -52,6 +57,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
         animator.SetFloat("Speed", direction.sqrMagnitude);
+
+
+        iqText.text = "iq: " + iq;
     }
 
     void OnCollisionEnter2D(Collision2D other) 

@@ -6,8 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
+    public Animator animator;
     private bool isJumping;
     private bool isGrounded;
+
     private Rigidbody2D rb;
 
     void Start() {
@@ -15,7 +17,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
-        
+
         float moveX = Input.GetAxis("Horizontal");
 
         // передвижение персонажа по горизонтали
@@ -25,12 +27,12 @@ public class PlayerController : MonoBehaviour
 
         if(moveX > 0)
         {
-            transform.localScale = new Vector3(1f,1f,1f);
+            transform.localScale = new Vector3(3f,3f,3f);
 
         }
         else if(moveX < 0)
         {
-            transform.localScale = new Vector3(-1f,1f,1f);
+            transform.localScale = new Vector3(-3f,3f,3f);
         }
 
         //прыжок
@@ -40,6 +42,8 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
             isGrounded = false;
         }
+
+        animator.SetFloat("HorizontalMove",Mathf.Abs(moveX));
     }
 
     void OnCollisionEnter2D(Collision2D other) 

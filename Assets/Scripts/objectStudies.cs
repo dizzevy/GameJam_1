@@ -14,6 +14,7 @@ public class objectStudies : MonoBehaviour
     public float studyTime = 5f; // время , необходимое для изучения объекта
     public float iq = 1f;
     public PlayerController playerController;
+    public Emoji emoji;
     
 
 
@@ -28,7 +29,6 @@ public class objectStudies : MonoBehaviour
             isTrigger = true;
             PressEText.text = "Press 'E' to study the object";
             PressEText.enabled = true;
-
         }
     }
 
@@ -39,6 +39,7 @@ public class objectStudies : MonoBehaviour
             PressEText.enabled = false;
             if (!isPlayerInside)
             {
+                emoji.started = 0;
                 StopStudying();
             }
             
@@ -51,6 +52,7 @@ public class objectStudies : MonoBehaviour
 
         if(isTrigger && !isStuding && Input.GetKeyDown(KeyCode.E))
         {
+            emoji.started = 1;
             isStuding = true;
             Debug.Log("УЧУСЬ...");
             studyTimer = studyTime;
@@ -65,6 +67,7 @@ public class objectStudies : MonoBehaviour
 
             if (studyTimer <= 0f)
             {
+                emoji.started = 0;
                 isStuding = false;
                 IncreaseIQ();
                 Destroy(this.gameObject);

@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
 
         // куда персонаж идёт туди и смотрит
-
+        
         if(moveX > 0)
         {
             transform.localScale = new Vector3(1f,1f,1f);

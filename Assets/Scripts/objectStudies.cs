@@ -8,6 +8,7 @@ public class objectStudies : MonoBehaviour
 {
     private bool isTrigger;
     private bool isStuding;
+    private bool isPlayerInside;
     public TMP_Text PressEText;
     private float studyTimer = 0f;
     public float studyTime = 5f; // время , необходимое для изучения объекта
@@ -36,6 +37,10 @@ public class objectStudies : MonoBehaviour
         {
             isTrigger = false;
             PressEText.enabled = false;
+            if (!isPlayerInside)
+            {
+                StopStudying();
+            }
             
 
         }
@@ -44,7 +49,8 @@ public class objectStudies : MonoBehaviour
     private void Update() 
     {
 
-        if(isTrigger && !isStuding && Input.GetKeyDown(KeyCode.E)){
+        if(isTrigger && !isStuding && Input.GetKeyDown(KeyCode.E))
+        {
             isStuding = true;
             Debug.Log("УЧУСЬ...");
             studyTimer = studyTime;
@@ -66,6 +72,15 @@ public class objectStudies : MonoBehaviour
         }
         
     }
+
+   private void StopStudying()
+   {
+
+        isStuding = false;
+
+   }
+   
+        
 
     private void IncreaseIQ(){
         playerController.iq += 2f;

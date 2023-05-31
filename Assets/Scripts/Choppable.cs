@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class Choppable : MonoBehaviour
 {
-    public int iq = 50; // айкю
+    public int iq; // айкю
     public float needDist = 1.5f; // дистанция до объекта чтобы его ломать
+    public PlayerController playerController; //ссылка на скрипт игрока
+
 
     public int health;
 
@@ -49,7 +51,7 @@ public class Choppable : MonoBehaviour
 
     void Update()
     {
-        if(iq >= 50){ iqtrue = true; } else if(iq < 50){ iqtrue = false; } // iq проверка
+        if(playerController.iq >= 50){ iqtrue = true; } else if(playerController.iq < 50){ iqtrue = false; } // iq проверка
         Distance = Vector3.Distance(transform.position, plrTransform.position); // считаем дистанцию
 
         if(health == 0){ // проверяем срубленно ли дерево

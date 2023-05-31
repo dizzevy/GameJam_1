@@ -5,12 +5,18 @@ using UnityEngine.UI;
 
 public class ItemControl : MonoBehaviour
 {
-    public ItemGeneral ChatGPT;
+    public ItemGeneral itemGeneral;
     public string thisname;
+    public PlayerController playerController;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        ChatGPT.SunutInt(thisname);
-        Destroy(this.gameObject);
+        if(playerController.iq >=35)
+        {
+            itemGeneral.SunutInt(thisname);
+            Destroy(this.gameObject);
+        }
+
     }
 }
+    

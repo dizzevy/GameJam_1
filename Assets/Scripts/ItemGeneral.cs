@@ -5,8 +5,8 @@ using TMPro;
 
 public class ItemGeneral : MonoBehaviour
 {
-    private int[] values = { 0, 0, 0, 0, 0  };
-    private string[] names = { "Log", "Stone", "Stick", "String",  "Rope" };
+    public int[] values = { 0, 0, 0, 0, 0  };
+    public string[] names = { "Log", "Stone", "Stick", "String",  "Rope" };
     public TMP_Text[] texts = { null, null, null, null, null };
 
     public void SunutInt(string name){
